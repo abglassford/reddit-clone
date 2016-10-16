@@ -4,28 +4,31 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <link rel="stylesheet" href="style.css" media="screen" title="no title">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <title>Greenit</title>
   </head>
   <body>
     <header>
       <div class="header container">
-        <div class="row"ng-controller="showNewController as new">
+        <div class="row">
             <div class="logoDiv col m1">
               <h1 class="logo">Greenit</h1>
             </div>
-            <div class="postDiv col m2">
+            <div class="postDiv col m2" ng-controller="showNewController as new">
               <h2 class="post" ng-click="new.newPost()"><a href="#"><i class="add material-icons">add</i> Submit Post</a></h2>
             </div>
-            <div class="sortDiv input-field col m2">
-              <select class="sortBy">
-                <option>Date</option>
-                <option>Title</option>
-              </select>
-            </div>
-            <div class="searchDiv input-field col m3">
-              <input class="search" type="text" name="name" placeholder="Search">
+            <div class="order">
+              <div class="sortDiv input-field col m2" ng-controller="sortArticlesController as sort">
+                <select ng-model="sort.selection" class="sortBy" ng-change="sort.sort()">
+                  <option></option>
+                  <option value="date">Date</option>
+                  <option value="title">Title</option>
+                </select>
+              </div>
+              <div class="searchDiv input-field col m3" ng-controller="searchArticlesController as search">
+                <input ng-model="search.searchText" class="search" type="text" name="name" placeholder="Search" ng-change="search.search()">
+              </div>
+              <a class="waves-effect waves-light btn" ng-click="sort.test()">button</a>
             </div>
         </div>
       </div>
@@ -46,15 +49,17 @@
             </div>
             <div class="row">
               <div class="input-field col m12">
-                <textarea ng-model="sub.newPostData.content"id="textarea1" class="materialize-textarea" placeholder="enter content"></textarea>
+                <textarea ng-model="sub.newPostData.description"id="textarea1" class="materialize-textarea" placeholder="enter content"></textarea>
               </div>
-              <a class="waves-effect waves-light btn" ng-click="sub.test()">button</a>
+              <a class="waves-effect waves-light btn" ng-click="sub.addPost()">button</a>
             </div>
           </div>
         </div>
         <div class="row">
           <br>
-          <div class="subgreenit card-panel green" ng-repeat="post in sub.postArray">
+          <a class="waves-effect waves-light btn" ng-click="sub.test()">button</a>
+          <div class="subgreenit card-panel green" ng-repeat="post in sub.postArray | filter : searchText | orderBy : selection">
+            <img class="photo"src="{{post.image}}" alt="image" />
             <h4>{{post.title}}</h4>
             <h4>{{post.author}} {{post.votes}}</h4>
             <p>{{post.description}}</p>

@@ -40,7 +40,7 @@ header {
   border-radius: 5px;
   width: 100px;
 }
-
-.subgreenit{
-  height: 300px;
+.photo {
+  height: 80px;
+  width: auto
 }
