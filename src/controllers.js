@@ -17,8 +17,7 @@
       description: ''
     }
 
-    this.postArray = [
-    {
+    this.postArray = [{
       title: 'Stuff During the Times',
       author: 'James Baxter',
       image: 'https://hd.unsplash.com/25/peak.jpg',
@@ -36,7 +35,7 @@
       image: 'https://hd.unsplash.com/photo-1444310689954-f041cfbe29f2',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       votes: 0
-    },]
+    }]
 
     this.addPost = function () {
       this.postArray.push(this.newPostData)
@@ -48,8 +47,11 @@
         description: ''
       }
     }
-    this.test = function () {
-      console.log($rootScope.selection, $rootScope.searchText);
+    this.downVote = function (article) {
+      article.votes--
+    }
+    this.upVote = function (article) {
+      article.votes++
     }
   }
 
@@ -66,13 +68,13 @@
   function sortArticlesController ($rootScope) {
     this.sort = function () {
       $rootScope.selection = this.selection
+      console.log($rootScope.selection);
     }
   }
 
   function searchArticlesController ($rootScope) {
     this.search = function () {
       $rootScope.searchText = this.searchText
-      console.log('taco');
     }
   }
 

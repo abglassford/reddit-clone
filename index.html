@@ -20,7 +20,6 @@
             <div class="order">
               <div class="sortDiv input-field col m2" ng-controller="sortArticlesController as sort">
                 <select ng-model="sort.selection" class="sortBy" ng-change="sort.sort()">
-                  <option></option>
                   <option value="date">Date</option>
                   <option value="title">Title</option>
                 </select>
@@ -28,7 +27,6 @@
               <div class="searchDiv input-field col m3" ng-controller="searchArticlesController as search">
                 <input ng-model="search.searchText" class="search" type="text" name="name" placeholder="Search" ng-change="search.search()">
               </div>
-              <a class="waves-effect waves-light btn" ng-click="sort.test()">button</a>
             </div>
         </div>
       </div>
@@ -57,11 +55,18 @@
         </div>
         <div class="row">
           <br>
-          <a class="waves-effect waves-light btn" ng-click="sub.test()">button</a>
-          <div class="subgreenit card-panel green" ng-repeat="post in sub.postArray | filter : searchText | orderBy : selection">
+          <div class="subgreenit card-panel green" ng-repeat="post in sub.postArray | orderBy : '-votes' | filter : searchText | orderBy : selection">
             <img class="photo"src="{{post.image}}" alt="image" />
             <h4>{{post.title}}</h4>
-            <h4>{{post.author}} {{post.votes}}</h4>
+            <h4>{{post.author}}
+              <a class="waves-effect waves-light" ng-click="sub.downVote(post)">
+                <i class="material-icons">remove</i>
+              </a>
+              {{post.votes}}
+              <a class="waves-effect waves-light" ng-click="sub.upVote(post)">
+                <i class="material-icons">add</i>
+              </a>
+            </h4>
             <p>{{post.description}}</p>
           </div>
         </div>
