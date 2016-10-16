@@ -11,19 +11,59 @@
   <body>
     <header>
       <div class="header container">
-        <div class="row">
-          <div class="col m12 s12">
+        <div class="row"ng-controller="showNewController as new">
+            <div class="logoDiv col m1">
               <h1 class="logo">Greenit</h1>
-              <h2 class="post"><i class="add material-icons">add</i> Submit Post</h2>
-              <input class="search" type="text" name="name" placeholder="Search">
-              <select class="sortBy" name="">
+            </div>
+            <div class="postDiv col m2">
+              <h2 class="post" ng-click="new.newPost()"><a href="#"><i class="add material-icons">add</i> Submit Post</a></h2>
+            </div>
+            <div class="sortDiv input-field col m2">
+              <select class="sortBy">
                 <option>Date</option>
                 <option>Title</option>
               </select>
-          </div>
+            </div>
+            <div class="searchDiv input-field col m3">
+              <input class="search" type="text" name="name" placeholder="Search">
+            </div>
         </div>
       </div>
     </header>
+    <main>
+      <div class="main container" ng-controller="subgreenitController as sub">
+        <div class="row" ng-show="showPost">
+          <div class="newPost card-panel yellow col m12">
+            <h1>New Posting</h1>
+            <div class="input-field col m4">
+              <input ng-model="sub.newPostData.title"type="text" name="title" placeholder="Title">
+            </div>
+            <div class="input-field col m4">
+              <input ng-model="sub.newPostData.author"type="text" name="author" placeholder="Author">
+            </div>
+            <div class="input-field col m4">
+              <input ng-model="sub.newPostData.image"type="text" name="image" placeholder="Image URL">
+            </div>
+            <div class="row">
+              <div class="input-field col m12">
+                <textarea ng-model="sub.newPostData.content"id="textarea1" class="materialize-textarea" placeholder="enter content"></textarea>
+              </div>
+              <a class="waves-effect waves-light btn" ng-click="sub.test()">button</a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <br>
+          <div class="subgreenit card-panel green" ng-repeat="post in sub.postArray">
+            <h4>{{post.title}}</h4>
+            <h4>{{post.author}} {{post.votes}}</h4>
+            <p>{{post.description}}</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
     <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>

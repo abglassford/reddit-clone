@@ -3,24 +3,18 @@ header {
   border-bottom: 1px solid #d4d4d4;
   height: 60px;
 }
-.header {
-  margin: 0px;
-}
 
 .logo {
   display: inline-block;
   font-size: 25px;
   position: relative;
   bottom: 17px;
-  margin-right: 20px;
-  margin-left: 20px;
 }
 .post {
   display: inline-block;
   position: relative;
   font-size: 20px;
-  bottom: 18px;
-  margin-right: 20px;
+  bottom: 15px;
 }
 .add {
   font-size: 20px;
@@ -28,17 +22,25 @@ header {
   top: 4px;
   left: 5px;
 }
-input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea {
-  width: 200px;
-  position: relative;
-  bottom: 17px;
-  font-size: 20px;
-  margin-right: 20px;
-}
 .sortBy{
   display: inline-block;
-  width: 200px;
+  width: 100px;
   position: relative;
-  bottom: 17px;
+  bottom: 8px;
   font-size: 20px;
+  background-color: transparent;
+  border: none;
+}
+.searchDiv {
+  font-size: 20px;
+  position: relative;
+  bottom: 9px;
+  background-color: white;
+  height: 45px;
+  border-radius: 5px;
+  width: 100px;
+}
+
+.subgreenit{
+  height: 300px;
 }
