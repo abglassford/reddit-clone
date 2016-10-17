@@ -43,3 +43,9 @@ header {
   height: 80px;
   width: auto
 }
+.positive {
+  color: green
+}
+.negative {
+  color: red
+}
