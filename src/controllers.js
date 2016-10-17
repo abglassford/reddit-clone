@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  const app = angular.module('greenit')
+  const app = angular.module('greenit', ['angularMoment'])
 
   app.controller('subgreenitController', subgreenitController)
   app.controller('showNewController', showNewController)
@@ -8,6 +8,8 @@
   app.controller('searchArticlesController', searchArticlesController)
 
   function subgreenitController ($rootScope) {
+
+    this.time = new Date()
 
     $rootScope.showPost = false
 
@@ -24,7 +26,8 @@
       votes: 0,
       commentList: [],
       commentView: false,
-      commentFormView: false
+      commentFormView: false,
+      time: new Date()
     }
 
     this.addPost = function () {
@@ -38,14 +41,15 @@
         votes: 0,
         commentList: [],
         commentView: false,
-        commentFormView: false
+        commentFormView: false,
+        time: new Date ()
       }
     }
 
     this.downVote = function (article) {
       article.votes--
     }
-    
+
     this.upVote = function (article) {
       article.votes++
     }
@@ -82,7 +86,7 @@
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       votes: 0,
       commentList: [{author: 'Jimmy', content: `This is dumb`}, {author: 'Sarah', content: `No it's not, it's awesome...`}, {author: 'Mack', content: `You guys are weird...`}],
-      visible: false
+      time: new Date(2016, 0, 1)
     },{
       title: 'Attatude During the Times',
       author: 'Sam Gam',
@@ -90,8 +94,7 @@
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       votes: 0,
       commentList: [{author: 'Jimmy', content: `This is dumb`}, {author: 'Sarah', content: `No it's not, it's awesome...`}, {author: 'Mack', content: `You guys are weird...`}],
-      commentView: false,
-      commentFormView: false
+      time: new Date(2016, 0, 1)
     },{
       title: 'Quintuplets During the Times',
       author: 'Tori Morrison',
@@ -99,8 +102,7 @@
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       votes: 0,
       commentList: [{author: 'Jimmy', content: `This is dumb`}],
-      commentView: false,
-      commentFormView: false
+      time: new Date(2016, 0, 1)
     }]
   }
 

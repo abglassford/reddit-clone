@@ -89,6 +89,11 @@
                    add comment
                 </a>
               </div>
+
+              <div class="time">
+                <time>{{post.time | amCalendar}}</time>
+              </div>
+
             </div>
               <div class="card-panel yellow row" ng-show="post.commentFormView">
                 <form name="newComment" ng-submit="sub.addComment(post)">
@@ -121,6 +126,8 @@
     <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
     <script src="./src/app.js"></script>
     <script src="./src/controllers.js"></script>
   </body>
