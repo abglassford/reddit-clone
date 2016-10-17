@@ -1,0 +1,68 @@
+header {
+  background-color: #E9EAEC;
+  border-bottom: 1px solid #d4d4d4;
+  height: 60px;
+}
+
+a{
+  color: black;
+}
+.logoDiv {
+  text-align: center;
+}
+
+.logo {
+  display: inline-block;
+  font-size: 25px;
+  position: relative;
+  bottom: 17px;
+}
+.post {
+  display: inline-block;
+  position: relative;
+  font-size: 20px;
+  bottom: 15px;
+}
+.add {
+  font-size: 20px;
+  position: relative;
+  top: 4px;
+  left: 5px;
+}
+.sortBy{
+  position: relative;
+  bottom: 8px;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+}
+.searchDiv {
+  font-size: 20px;
+  position: relative;
+  bottom: 8px;
+  height: 45px;
+  border-radius: 5px;
+}
+.photo {
+  width: 100%;
+  height: auto;
+}
+.positive {
+  color: green
+}
+.negative {
+  color: red
+}
+.invalid {
+  border: 1px solid red;
+}
+
+.add:hover {
+  transform: rotate(360deg);
+}
+.rotate {
+  transition: all 0.5s ease-in-out;
+}
+.rotate:hover {
+  transition: all 0.5s ease-in-out;
+}
