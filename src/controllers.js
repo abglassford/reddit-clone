@@ -9,6 +9,47 @@
 
   function subgreenitController ($rootScope) {
 
+    $rootScope.showPost = false
+
+    this.commentData = {
+      author: '',
+      content: ''
+    }
+
+    this.newPostData = {
+      title: '',
+      author: '',
+      image: '',
+      description: '',
+      votes: 0,
+      commentList: [],
+      commentView: false,
+      commentFormView: false
+    }
+
+    this.addPost = function () {
+      this.postArray.push(this.newPostData)
+      $rootScope.showPost = false
+      this.newPostData = {
+        title: '',
+        author: '',
+        image: '',
+        description: '',
+        votes: 0,
+        commentList: [],
+        commentView: false,
+        commentFormView: false
+      }
+    }
+
+    this.downVote = function (article) {
+      article.votes--
+    }
+    
+    this.upVote = function (article) {
+      article.votes++
+    }
+
     this.showComments = function (article) {
       if (article.commentView === true) {
         article.commentView = false
@@ -34,24 +75,6 @@
       article.commentFormView = false
     }
 
-    $rootScope.showPost = false
-
-    this.commentData = {
-      author: '',
-      content: ''
-    }
-
-    this.newPostData = {
-      title: '',
-      author: '',
-      image: '',
-      description: '',
-      votes: 0,
-      commentList: [],
-      commentView: false,
-      commentFormView: false
-    }
-
     this.postArray = [{
       title: 'Stuff During the Times',
       author: 'James Baxter',
@@ -75,32 +98,10 @@
       image: 'https://hd.unsplash.com/photo-1444310689954-f041cfbe29f2',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       votes: 0,
-      commentList: [{author: 'Jimmy', content: `This is dumb`}, {author: 'Sarah', content: `No it's not, it's awesome...`}, {author: 'Mack', content: `You guys are weird...`}],
+      commentList: [{author: 'Jimmy', content: `This is dumb`}],
       commentView: false,
       commentFormView: false
     }]
-
-    this.addPost = function () {
-
-      this.postArray.push(this.newPostData)
-      $rootScope.showPost = false
-      this.newPostData = {
-        title: '',
-        author: '',
-        image: '',
-        description: '',
-        votes: 0,
-        commentList: [],
-        commentView: false,
-        commentFormView: false
-      }
-    }
-    this.downVote = function (article) {
-      article.votes--
-    }
-    this.upVote = function (article) {
-      article.votes++
-    }
   }
 
   function showNewController ($rootScope) {

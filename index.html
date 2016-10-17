@@ -73,15 +73,23 @@
               </a>
             </h4>
             <p>{{post.description}}</p>
-            <span>
-              <a ng-click="sub.showComments(post)">
-                <i class="material-icons">comment</i> {{post.commentList.length}} comments
-              </a>
-              <a ng-click="sub.showCommentForm(post)">
-                <i class="material-icons">mode_edit</i>
-                 add comment
-              </a>
-            </span>
+            <div class="row">
+              <div class="col m2">
+                <a ng-click="sub.showComments(post)">
+                  <i class="material-icons">comment</i> {{post.commentList.length}} <ng-pluralize count="post.commentList.length" when="{
+                    '0' : 'comments',
+                    'one' : 'comment',
+                    'other' : 'comments'
+                  }"></ng-pluralize>
+                </a>
+              </div>
+              <div class="col m2">
+                <a ng-click="sub.showCommentForm(post)">
+                  <i class="material-icons">mode_edit</i>
+                   add comment
+                </a>
+              </div>
+            </div>
               <div class="card-panel yellow row" ng-show="post.commentFormView">
                 <form name="newComment" ng-submit="sub.addComment(post)">
                 <div class="input-field col m6">
