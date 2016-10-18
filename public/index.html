@@ -3,34 +3,37 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    <link rel="stylesheet" href="./src/style.css" media="screen" title="no title">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css">
     <title>Greenit</title>
   </head>
   <body>
     <header>
-      <div class="header container rotate">
-        <div class="row">
-          <div class="logoDiv col m3 s12">
-            <h1 class="logo">Greenit</h1>
-          </div>
-          <div class="postDiv col m3 s12" ng-controller="showNewController as new">
-            <h2 class="post" ng-click="new.newPost()"><a href="#"><i class="add rotate material-icons">add</i> Submit Post</a></h2>
-          </div>
-          <div class="order col m3 s12">
-            <div class="sortDiv input-field" ng-controller="sortArticlesController as sort">
-              <select ng-model="sort.selection" class="sortBy" ng-change="sort.sort()">
-                <option value="-votes">Votes</option>
-                <option value="-date">Date</option>
-                <option value="title">Title</option>
-              </select>
-            </div>
-          </div>
-          <div class="searchDiv input-field col m3 s12" ng-controller="searchArticlesController as search">
-            <input ng-model="search.searchText" class="search" type="text" name="name" placeholder="Search" ng-change="search.search()">
-          </div>
+      <!-- Dropdown Structure -->
+      <ul id="dropdown1" class="dropdown-content" ng-controller="sortArticlesController as sort">
+        <li><a ng-click="sort.sort('-votes')">Votes</a></li>
+        <li><a ng-click="sort.sort('-date')">Date</a></li>
+        <li><a ng-click="sort.sort('title')">Title</a></li>
+      </ul>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo">Greenit</a>
+          <ul class="right hide-on-med-and-down">
+            <li ng-controller="searchArticlesController as search">
+              <div class="input-field">
+                <input ng-model="search.searchText" ng-change="search.search()" name="search" id="search" type="search" required>
+                <label for="search"><i class="material-icons left">search</i></label>
+              </div>
+            </li>
+            <li ng-controller="showNewController as new">
+              <span ng-click="new.newPost()"><i class="add rotate material-icons left">add</i>Submit Post
+              </span>
+            </li>
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Sort By:<i class="material-icons right">arrow_drop_down</i></a></li>
+          </ul>
         </div>
-      </div>
+      </nav>
     </header>
     <main>
       <div class="main container" ng-controller="subgreenitController as sub">
@@ -54,23 +57,24 @@
                 <label for="content">Content</label>
                 <input ng-model="sub.newPostData.description" type="text" name="content" ng-class="{ invalid : postInfo.content.$invalid && !postInfo.content.$pristine}" required>
               </div>
-              <div class="col m2 offset-m5">
-                <input class="waves-effect waves-light btn"type="submit" name="submit" value="Submit" ng-disabled="postInfo.$invalid">
-              </div>
               <div class="row">
+                <div class="col m2 offset-m5">
+                  <input class="waves-effect waves-light btn"type="submit" name="submit" value="Submit" ng-disabled="postInfo.$invalid">
+                </div>
               </div>
             </form>
           </div>
         </div>
         <div class="row">
-          <br>
           <div class="subgreenit card-panel teal white-text" ng-repeat="post in sub.postArray | filter : searchText | orderBy : selection">
+
             <div class="postDiv row">
-              <div class="photoDiv col m4">
-                <img class="photo"src={{post.image}} alt="image">
+              <div class="photoDiv col m4 valign-wrapper">
+                  <img class="photo valign" src={{post.image}} alt="image">
               </div>
               <div class="col m8">
                 <h4>{{post.title}}</h4>
+                  <time>{{post.date | amCalendar}}</time>
                 <h4>by {{post.author}} <a class="waves-effect waves-light" ng-click="sub.downVote(post)">
                   <i class="material-icons rotate">remove</i>
                 </a>
@@ -81,8 +85,9 @@
                 </h4>
                 <p>{{post.description}}</p>
               </div>
-              <div class="row">
-                <div class="col m3 offset-m2">
+              </div>
+              <div class="commentsDiv row">
+                <div class="col m4 offset-m3">
                   <a ng-click="sub.showComments(post)">
                     <i class="material-icons">comment</i> {{post.commentList.length}} <ng-pluralize count="post.commentList.length" when="{
                       '0' : 'comments',
@@ -91,17 +96,13 @@
                     }"></ng-pluralize>
                   </a>
                 </div>
-                <div class="col m3">
+                <div class="col m4">
                   <a ng-click="sub.showCommentForm(post)">
                     <i class="material-icons">mode_edit</i>
                      add comment
                   </a>
                 </div>
-                <div class="time col m3">
-                  <time>{{post.date | amCalendar}}</time>
-                </div>
               </div>
-            </div>
             <div class="card-panel yellow black-text row" ng-show="post.commentFormView">
               <form name="newComment" ng-submit="sub.addComment(post)">
                 <div class="input-field col m6">
@@ -127,11 +128,9 @@
       </div>
     </div>
   </main>
-
-
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-animate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>

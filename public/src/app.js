@@ -1,5 +1,6 @@
 (function() {
   'use strict';
   angular.module('greenit', ['angularMoment', 'ngAnimate'])
-  $('select').material_select();
+  // $('select').material_select();
+  $(".dropdown-button").dropdown();
 }());

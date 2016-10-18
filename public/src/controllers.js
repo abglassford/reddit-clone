@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  const app = angular.module('greenit', ['angularMoment'])
+  const app = angular.module('greenit')
 
   app.controller('subgreenitController', subgreenitController)
   app.controller('showNewController', showNewController)
@@ -118,7 +118,8 @@
   function sortArticlesController ($rootScope) {
     this.selection = "-votes"
     $rootScope.selection = this.selection
-    this.sort = function () {
+    this.sort = function (selection) {
+      this.selection = selection
       $rootScope.selection = this.selection
     }
   }

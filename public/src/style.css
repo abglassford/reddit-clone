@@ -1,33 +1,25 @@
+body {
+  background-image: url('./img/light_grey_@2X.jpg');
+}
+
 header {
+  margin-bottom: 30px;
   background-color: #E9EAEC;
   border-bottom: 1px solid #d4d4d4;
   height: 60px;
 }
-
+nav {
+  background-color: #009688;
+  padding: 0px 10px 0px 10px;
+}
 a{
   color: black;
 }
-.logoDiv {
-  text-align: center;
+.postDiv {
+  height: 250px;
 }
-
-.logo {
-  display: inline-block;
-  font-size: 25px;
-  position: relative;
-  bottom: 17px;
-}
-.post {
-  display: inline-block;
-  position: relative;
-  font-size: 20px;
-  bottom: 15px;
-}
-.add {
-  font-size: 20px;
-  position: relative;
-  top: 4px;
-  left: 5px;
+.photoDiv {
+  height: 100%;
 }
 .sortBy{
   position: relative;
@@ -36,12 +28,8 @@ a{
   background-color: transparent;
   border: none;
 }
-.searchDiv {
-  font-size: 20px;
-  position: relative;
-  bottom: 8px;
-  height: 45px;
-  border-radius: 5px;
+.commentsDiv {
+  height: 30px;
 }
 .photo {
   width: 100%;
@@ -56,7 +44,11 @@ a{
 .invalid {
   border: 1px solid red;
 }
-
+.add{
+  position: relative;
+  bottom: 1px;
+  margin-right: 2px !important;
+}
 .add:hover {
   transform: rotate(360deg);
 }
@@ -65,4 +57,11 @@ a{
 }
 .rotate:hover {
   transition: all 0.5s ease-in-out;
+}
+#search {
+  position: relative;
+  top: 11px;
+  height: 40px;
+  width: 150px;
+  border-radius: 5px;
 }
